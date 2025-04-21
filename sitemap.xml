@@ -1,16 +1,16 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>/404.html</loc></url>
-<url><loc>/LICENSE-text.html</loc></url>
-<url><loc>/authors.html</loc></url>
-<url><loc>/index.html</loc></url>
-<url><loc>/news/index.html</loc></url>
-<url><loc>/reference/check_batch.html</loc></url>
-<url><loc>/reference/embed.html</loc></url>
-<url><loc>/reference/index.html</loc></url>
-<url><loc>/reference/polyphony.html</loc></url>
-<url><loc>/reference/single_turn.html</loc></url>
-<url><loc>/reference/single_turns.html</loc></url>
-<url><loc>/reference/sitrep.html</loc></url>
-<url><loc>/reference/workspace_batch.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/404.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/LICENSE-text.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/authors.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/index.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/news/index.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/reference/check_batch.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/reference/embed.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/reference/index.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/reference/polyphony.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/reference/single_turn.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/reference/single_turns.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/reference/sitrep.html</loc></url>
+<url><loc>https://jdollman.github.io/callm/reference/workspace_batch.html</loc></url>
 </urlset>
 
