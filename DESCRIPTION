@@ -1,13 +1,26 @@
 Package: callm
-Title: What the Package Does (One Line, Title Case)
+Title: Makes Calls to LLMs
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+    person("Justin", "Dollman", , "jpauldoll@gmail.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 URL: https://github.com/jdollman/callm
 BugReports: https://github.com/jdollman/callm/issues
+Imports: 
+    httr2,
+    jsonlite,
+    magrittr,
+    cli,
+    curl,
+    utils
+Suggests: 
+    httptest2,
+    testthat (>= 3.0.0),
+    usethis,
+    withr,
+    pkgdown
+Config/testthat/edition: 3
