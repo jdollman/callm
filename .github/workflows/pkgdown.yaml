@@ -48,6 +48,9 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3 # Use a recent version
+        with:
+          # Tell the action where pkgdown built the site:
+          path: ./docs
 
       - name: Deploy to GitHub Pages
         id: deployment
