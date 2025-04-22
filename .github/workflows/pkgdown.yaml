@@ -2,48 +2,53 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master]
-  pull_request:
-  release:
-    types: [published]
+    branches: [master]
   workflow_dispatch:
 
-name: pkgdown.yaml
+name: pkgdown
 
-permissions: read-all
+# Required for actions/deploy-pages to work
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Cancel old runs on new commits/pushes to the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   pkgdown:
     runs-on: ubuntu-latest
-    # Only restrict concurrency for non-PR jobs
-    concurrency:
-      group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-    permissions:
-      contents: write
+    # Only restrict building deploy branch for tags, see r-lib/actions#117
+    # env:
+    #   GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }} # GITHUB_TOKEN is available by default
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Use a recent version
 
-      - uses: r-lib/actions/setup-pandoc@v2
-
-      - uses: r-lib/actions/setup-r@v2
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v2
+      - name: Setup Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::pkgdown, local::.
-          needs: website
+          extra-packages: any::pkgdown, local::. # Install pkgdown and the local package
+          needs: website # Indicate dependencies needed for the website
 
       - name: Build site
-        run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        run: pkgdown::build_site_github_pages()
         shell: Rscript {0}
 
-      - name: Deploy to GitHub pages 🚀
-        if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4.5.0
-        with:
-          clean: false
-          branch: gh-pages
-          folder: docs
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3 # Use a recent version
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # Use a recent version
